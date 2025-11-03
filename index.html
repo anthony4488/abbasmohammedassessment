@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athletic Assessment Report - Abbas & Mohammed</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #2c3e50;
+            padding: 40px 20px;
+        }
+
+        .report-container {
+            max-width: 850px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .report-header {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .report-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12);
+        }
+
+        .report-title {
+            font-size: 2.8rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .report-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .athlete-info {
+            background: #f8fafc;
+            padding: 40px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .athlete-name {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .athlete-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #475569;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .report-content {
+            padding: 50px 40px;
+        }
+
+        .executive-summary {
+            background: linear-gradient(135deg, #667eea10, #764ba210);
+            border: 1px solid #667eea30;
+            padding: 30px;
+            margin-bottom: 50px;
+            border-radius: 12px;
+        }
+
+        .executive-summary h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .executive-summary p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        .assessment-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .assessment-category {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px 30px;
+            position: relative;
+        }
+
+        .category-number {
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .category-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .category-content {
+            padding: 30px;
+        }
+
+        .results-section {
+            margin-bottom: 25px;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .result-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .result-card.best {
+            background: #ecfdf5;
+            border-color: #10b981;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .result-card.best .result-value {
+            color: #059669;
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .bounds-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .total-distance {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .total-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f59e0b;
+        }
+
+        .assessment-rating {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+        }
+
+        .rating-label {
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .rating-badge {
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .excellent { background: #dcfce7; color: #166534; }
+        .good { background: #dbeafe; color: #1e40af; }
+        .average { background: #fef3c7; color: #92400e; }
+        .needs-improvement { background: #fee2e2; color: #dc2626; }
+
+        @media print {
+            body { background: white; }
+            .report-container { box-shadow: none; }
+            .assessment-grid { break-inside: avoid; }
+        }
+
+        @media (max-width: 768px) {
+            .athlete-details { flex-direction: column; gap: 15px; }
+            .report-content { padding: 30px 20px; }
+            .results-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="report-container">
+        <!-- Header -->
+        <div class="report-header">
+            <!-- Logo -->
+            <div style="position: relative; width: 100%; max-width: 150px; margin: 0 auto 30px auto;">
+                <iframe loading="lazy" style="width: 100%; height: 120px; border: none; padding: 0; margin: 0; background: transparent;" src="https://www.canva.com/design/DAG2a_N00HI/MCb1a3SkyjhfsUZZtpdwhw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+            
+            <h1 class="report-title">Athletic Performance Assessment</h1>
+            <p class="report-subtitle">Speed & Power Evaluation Report</p>
+        </div>
+
+        <!-- Athlete Information -->
+        <div class="athlete-info">
+            <h2 class="athlete-name">Abbas & Mohammed</h2>
+            <div style="text-align: center; color: #64748b; margin-bottom: 20px; font-size: 1.1rem;">Brothers Comparison Report</div>
+            <div class="athlete-details">
+                <div class="detail-item">
+                    <span class="detail-label">Age</span>
+                    <span>12 years (Youth)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Assessment Date</span>
+                    <span>27/10/2025</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Sport</span>
+                    <span>Rugby (NRL)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-content">
+            <!-- Executive Summary -->
+            <div class="executive-summary">
+                <h2>Executive Summary</h2>
+                <p>This comprehensive assessment evaluates both Abbas and Mohammed's performance across key areas of athletic development. As 12-year-old youth rugby athletes and brothers, their results demonstrate contrasting development profiles: Abbas shows areas requiring technical refinement and strength development, while Mohammed demonstrates elite youth potential with superior speed metrics and outstanding biomechanical efficiency across all testing categories.</p>
+            </div>
+
+            <!-- Assessment Categories -->
+            <div class="assessment-grid">
+                <!-- Category 1: 10 Meter Sprint -->
+                <div class="assessment-category">
+                    <div class="category-header">
+                        <div class="category-number">1</div>
+                        <h3 class="category-title">10 Meter Sprint</h3>
+                        <p class="category-description" style="font-size: 1.1rem; font-weight: 500;">Acceleration phase assessment (0-10m)</p>
+                    </div>
+                    <div class="category-content">
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Brothers Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">ABBAS</div>
+                                    <div class="result-value" style="color: #d97706;">2.10s</div>
+                                    <div class="result-label">10m Time</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">17.14 km/h</div>
+                                </div>
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">MOHAMMED</div>
+                                    <div class="result-value" style="color: #059669;">2.02s</div>
+                                    <div class="result-label">10m Time</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">17.80 km/h</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Mohammed 4% faster (0.08s advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- Elite Comparison -->
+                        <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">NRL Youth Development Comparison</h5>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Abbas (12yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #f59e0b;">2.10s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">17.14 km/h</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Elite NRL Youth (12-13yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #059669;">1.84s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">19.57 km/h</div>
+                                </div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #d97706; margin-bottom: 5px;">Gap: +0.26s slower</div>
+                                <div style="font-size: 0.95rem; color: #92400e;">14% slower than elite youth NRL level</div>
+                            </div>
+                        </div>
+
+                        <!-- Acceleration Mechanics Analysis -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #475569; margin-bottom: 20px; font-size: 1.1rem;">Acceleration Mechanics Analysis</h4>
+                            
+                            <div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto 20px auto;">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/1VVWfVtdt_A?si=m2-vKoXu3GkFLyaH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px;"></iframe>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">First Step Weakness & Delay</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Relying on back leg push-off instead of front leg drive, causing 210ms delay from initiation. Front leg lifts off ground rather than pushing down immediately, indicating quad and hip weakness limiting explosive start capability.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Heel Strike & Excessive Ground Contact</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Landing flat-footed with significant heel contact and foot placement in front of center of mass. Ground contact time of 210ms (target: 180ms) reduces reactive force. Massive heel strike with knee breaking shows weak quads - causing compliant ankles instead of stiff tendon action.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Vertical Rising & Breaking Forces</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Hips rising too vertical on second step instead of maintaining horizontal diagonal drive. Foot landing far in front of hips delays push point by 50ms. Tight neck and hunched back restrict arm extension range. 8 strides for first 10m with excessive ground time limiting frequency.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Positive Attributes</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Good tucked pelvic position (rare for age), decent knee drive and arm extension, excellent hip extension with good posterior push. Very mobile athlete with significant potential for development.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mohammed's Acceleration Mechanics Analysis -->
+                        <div style="background: #f0fdf4; border: 1px solid #10b981; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #065f46; margin-bottom: 20px; font-size: 1.1rem;">Mohammed's Acceleration Mechanics Analysis</h4>
+
+                            <div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto 20px auto;">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/xErRMeg_Z7A?si=m9MiqpdfDPFk1R_p" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px;"></iframe>
+                            </div>
+
+                            <div style="text-align: center; padding: 15px; background: #dcfce7; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #059669; margin-bottom: 5px;">Superior Acceleration Mechanics</div>
+                                <div style="font-size: 0.9rem; color: #065f46;">Mohammed demonstrates more efficient biomechanics resulting in 4% faster 0-10m time</div>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Superior Landing Position & Quickness</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">First and second steps land under center of mass (better than Abbas). Swifter leg action coming downwards with quicker ground contact. Ground contact time of 100-120ms in acceleration phase (significantly better than Abbas's 210ms) demonstrates superior reactive ability.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Exceptional Mobility & Range of Motion</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Very mobile athlete with excellent arm extension. Uses larger range of motion and more reactivity to initiate movement. Knees caving in shows internal rotation at hip - indicates limber and coordinated athlete with good natural movement patterns.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">First Step & Quad Weakness</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Picks up foot slightly to get going rather than pushing through ground. Sign of quad weakness - brain defaults to using more reactivity and larger range of motion instead of direct push. Needs strength development to activate more muscle fibers for greater push, especially in acceleration.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Rotation & Alignment Issues</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Knees pointing out too much with large rotation in legs during recovery phase. Taking him side-to-side rather than straight forward, reducing speed efficiency. Needs hips, toes, and legs more aligned straight in acceleration direction to maximize forward propulsion.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Heel Strike & Hamstring Load (Injury Risk)</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Reaching for ground instead of placing foot down, causing flatfooted heel striking with foot landing in front of center of mass (similar to Abbas). This places significant load on hamstring and creates strain over time - injury risk. Must transition to foot placement under center of mass with forefoot contact.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Development Pathway: Power & Coordination</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Primary focus: Add strength to stabilize knees on impact and develop overall power output. As he gets stronger, can activate more muscle fibers for greater push and aggression in acceleration. Need more stiffness and tension to complement his excellent mobility. Get more coordinated at speed work to bring foot/leg down quicker rather than reaching in front.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Performance Rating</span>
+                            <span class="rating-badge needs-improvement">Needs Improvement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Breakaway Speed -->
+                <div class="assessment-category">
+                    <div class="category-header">
+                        <div class="category-number">2</div>
+                        <h3 class="category-title">Breakaway Speed</h3>
+                        <p class="category-description">10-20 meter split assessment</p>
+                    </div>
+                    <div class="category-content">
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Brothers Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">ABBAS</div>
+                                    <div class="result-value" style="color: #d97706;">1.66s</div>
+                                    <div class="result-label">10-20m Split</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">21.69 km/h</div>
+                                </div>
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">MOHAMMED</div>
+                                    <div class="result-value" style="color: #059669;">1.49s</div>
+                                    <div class="result-label">10-20m Split</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">24.16 km/h</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Mohammed 11% faster (0.17s advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- Elite Comparison -->
+                        <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin-top: 20px;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">NRL Youth Development Comparison</h5>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Abbas (12yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #f59e0b;">1.66s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">21.69 km/h</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 8px; font-size: 1.1rem;">Elite NRL Youth (12-13yo)</div>
+                                    <div style="font-size: 1.8rem; font-weight: 700; color: #059669;">1.38s</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">26.09 km/h</div>
+                                </div>
+                            </div>
+                            <div style="padding: 15px; background: rgba(245, 158, 11, 0.1); border-radius: 8px; text-align: center;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #d97706; margin-bottom: 5px;">Gap: +0.28s slower</div>
+                                <div style="font-size: 0.95rem; color: #92400e;">20% slower than elite youth NRL level</div>
+                            </div>
+                            <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 8px; padding: 12px; margin-top: 15px;">
+                                <p style="color: #0c4a6e; font-size: 0.85rem; margin: 0;"><strong>Note:</strong> Fastest 12-year-olds in state achieve ~1.25s (28.80 km/h). Elite youth benchmark set at realistic 1.38s for broader comparison.</p>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Performance Rating</span>
+                            <span class="rating-badge needs-improvement">Needs Improvement</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Top End Speed -->
+                <div class="assessment-category">
+                    <div class="category-header">
+                        <div class="category-number">3</div>
+                        <h3 class="category-title">Top End Speed</h3>
+                        <p class="category-description">20-30 meter maximum velocity</p>
+                    </div>
+                    <div class="category-content">
+                        <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 12px; padding: 20px; margin-bottom: 25px;">
+                            <h4 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Brothers Performance Comparison</h4>
+                            <div class="results-grid">
+                                <div class="result-card" style="border-color: #f59e0b; background: #fef3c7;">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #92400e; margin-bottom: 8px;">ABBAS</div>
+                                    <div class="result-value" style="color: #d97706;">1.64s</div>
+                                    <div class="result-label">10m Fly</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">21.95 km/h</div>
+                                </div>
+                                <div class="result-card best">
+                                    <div style="font-size: 0.9rem; font-weight: 700; color: #059669; margin-bottom: 8px;">MOHAMMED</div>
+                                    <div class="result-value" style="color: #059669;">1.42s</div>
+                                    <div class="result-label">10m Fly</div>
+                                    <div style="font-size: 0.8rem; color: #64748b; margin-top: 4px;">25.35 km/h</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 15px; padding: 10px; background: #dcfce7; border-radius: 8px;">
+                                <span style="color: #059669; font-weight: 600;">Mohammed 15% faster (0.22s advantage)</span>
+                            </div>
+                        </div>
+
+                        <!-- Stride Mechanics Comparison -->
+                        <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">Brothers Stride Mechanics Comparison</h5>
+
+                            <!-- Abbas Metrics -->
+                            <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                                <h6 style="color: #92400e; margin-bottom: 15px; text-align: center;">ABBAS</h6>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #d97706; margin-bottom: 5px;">3.84 Hz</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Frequency</div>
+                                    </div>
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #d97706; margin-bottom: 5px;">~1.6m</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Length</div>
+                                    </div>
+                                    <div style="background: white; border: 2px solid #dc2626; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #dc2626; margin-bottom: 5px;">130 ms</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Ground Contact</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mohammed Metrics -->
+                            <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 20px;">
+                                <h6 style="color: #065f46; margin-bottom: 15px; text-align: center;">MOHAMMED</h6>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;">
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 5px;">4.18 Hz</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Frequency</div>
+                                    </div>
+                                    <div style="background: white; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 5px;">1.82m</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Stride Length</div>
+                                    </div>
+                                    <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #10b981; margin-bottom: 5px;">110 ms</div>
+                                        <div style="font-size: 0.85rem; color: #64748b;">Ground Contact</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="background: #e0f2fe; border-radius: 8px; padding: 15px; margin-top: 20px;">
+                                <p style="color: #0c4a6e; font-size: 0.9rem; line-height: 1.6; margin: 0;"><strong>Key Difference:</strong> Mohammed's 110ms GCT vs Abbas's 130ms (15% better) demonstrates superior reactive strength and ankle stiffness. Mohammed's longer stride (1.82m vs ~1.6m) combined with higher frequency (4.18 Hz vs 3.84 Hz) produces significantly faster top speed.</p>
+                            </div>
+                        </div>
+
+                        <!-- Performance Analysis -->
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 20px 0;">
+                            <h5 style="color: #92400e; margin-bottom: 12px; font-size: 1rem;">Speed Development Pattern</h5>
+                            <p style="color: #78350f; line-height: 1.5; margin-bottom: 0;">Abbas's 10m fly time of 1.64s (21.95 km/h) demonstrates his maximum velocity capability when already at top speed. For a 12-year-old rugby athlete, this shows developing speed that requires continued technical refinement and strength development.</p>
+                        </div>
+
+                        <!-- Top Speed Technical Analysis -->
+                        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #475569; margin-bottom: 20px; font-size: 1.1rem;">Top Speed Mechanics Analysis</h4>
+
+                            <div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto 20px auto;">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/bwm6jwUQFUU?si=M33XNPQOKRLbT9d0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px;"></iframe>
+                            </div>
+
+                            <div style="background: #fee2e2; border: 1px solid #dc2626; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                                <h5 style="color: #7c2d12; margin-bottom: 12px; font-size: 1rem;">Critical Issue: Overstriding with Braking Forces</h5>
+                                <p style="color: #7c2d12; line-height: 1.5; margin-bottom: 0;">Flat-footed heel striking approximately 20cm in front of center of mass creates significant braking forces. Elevated chin position pulls shoulders backward and causes hips to square forward, forcing foot to land ahead of center of mass and limiting horizontal/vertical propulsion.</p>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Ground Contact Time & Landing Position</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">130ms ground contact time at top speed (target: 120ms youth / 90ms elite). Foot striking ~20cm ahead of hip center with flat-footed heel contact creates braking forces preventing efficient propulsion off the ground.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Elevated Chin & Postural Issues</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Very elevated chin pulls shoulders backward, causing hips to square forward which forces foot to land in front of center of mass. This postural chain reaction directly contributes to overstriding pattern.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Massive Knee Deformation</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Significant knee deformation on contact shows quad weakness. Needs increased stiffness while maintaining horizontal projection. Stride length ~1.6m showing need for power development through plyometric work and jumps.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Excellent Upper Body Mechanics</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Strong arm extension and mobility - elbows coming high, upper chest well-positioned (not hunched). Good knee lift showing excellent range of motion with aggression in sprint. Knee/shin orientation properly sends him forward horizontally.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Solid Athletic Foundation</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Abbas demonstrates solid overall athleticism with good height off steps and proper horizontal projection through shin angle. Main improvements needed: foot placement closer to center of mass, quad strength development, and increased overall power output.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mohammed's Top Speed Mechanics Analysis -->
+                        <div style="background: #f0fdf4; border: 1px solid #10b981; border-radius: 12px; padding: 25px; margin: 20px 0;">
+                            <h4 style="color: #065f46; margin-bottom: 20px; font-size: 1.1rem;">Mohammed's Top Speed Mechanics Analysis</h4>
+
+                            <div style="position: relative; width: 100%; max-width: 560px; margin: 0 auto 20px auto;">
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/-MQ-xj-SZU8?si=z3lf5pOlSCVy5ySB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 8px;"></iframe>
+                            </div>
+
+                            <div style="text-align: center; padding: 15px; background: #dcfce7; border-radius: 8px; margin-bottom: 15px;">
+                                <div style="font-size: 1.1rem; font-weight: 700; color: #059669; margin-bottom: 5px;">Elite Youth Top Speed Mechanics</div>
+                                <div style="font-size: 0.9rem; color: #065f46;">Mohammed's 1.42s fly time (25.35 km/h) demonstrates superior mechanics with 110ms GCT</div>
+                            </div>
+
+                            <div style="display: grid; gap: 15px;">
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Outstanding Upper Body Rotation & Torque</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Excellent rotational mechanics - wraps wrists and elbows back around spine and into front of chin. Uses rotational forces and torque effectively to propel himself forward. This is a major strength that differentiates his mechanics and contributes to forward propulsion.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Superior Ground Contact Time & Power</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">110ms GCT at top speed - significantly quicker to get foot through compared to Abbas (130ms). This demonstrates superior reactive strength and power output. Stays on ground less time while producing more force, indicating more powerful athlete.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Good Elastic Component & Stride Length</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Very good elastic component from ankles creating decent stride length for age (1.69-1.75m over 5.5 strides per 10m). Good hip extension and relaxed face with no tension - shows natural athleticism and efficient energy use.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Knee Breaking & Quad Weakness</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Similar to Abbas - knee breaking/deformation on contact showing quad weakness. Slight knee bend at back leg extension. Needs quad strengthening to maintain stiffness through contact phase and improve force transfer.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Hip Internal Rotation & Side-to-Side Movement</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Hips caving in with significant internal rotation - shows he's limberous but needs more tension and stiffness throughout spine and hips. Side-to-side action from shoulders and legs reduces forward efficiency. Need to channel movement straight forward rather than laterally for speed gains.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fee2e2; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #dc2626;">Heel Striking & Landing in Front of Center of Mass</strong>
+                                    </div>
+                                    <p style="color: #7f1d1d; font-size: 0.95rem;">Similar issue to Abbas - heel striking with foot landing in front of center of mass creates braking forces. Foot flaring out in front instead of coming straight down = power leakage. Needs coordination work to get foot placement directly under center of mass with forefoot contact.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #fef3c7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #f59e0b; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #d97706;">Too Much Vertical Rise & Air Time</strong>
+                                    </div>
+                                    <p style="color: #92400e; font-size: 0.95rem;">Going too vertical with excessive air time instead of staying forward. Needs to maintain more forward lean/projection to keep velocity horizontal rather than losing energy to vertical displacement. More forward body position will reduce air time and increase ground contact frequency.</p>
+                                </div>
+
+                                <div style="background: white; border: 1px solid #dcfce7; border-radius: 8px; padding: 15px;">
+                                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                        <span style="width: 8px; height: 8px; background: #10b981; border-radius: 50%; margin-right: 10px;"></span>
+                                        <strong style="color: #059669;">Development Priority: Speed Coordination & Stiffness</strong>
+                                    </div>
+                                    <p style="color: #065f46; font-size: 0.95rem;">Focus on speed-specific coordination drills to improve foot placement and timing. Add stiffness throughout kinetic chain while maintaining his excellent mobility. Key improvements: forefoot striking under center of mass, reducing side-to-side motion, creating more forward projection. His power base is strong - needs technical refinement.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Performance Rating</span>
+                            <span class="rating-badge average">Average</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Bounding Coordination Assessment -->
+                <div class="assessment-category">
+                    <div class="category-header" style="background: linear-gradient(135deg, #dc2626, #991b1b);">
+                        <div class="category-number">4</div>
+                        <h3 class="category-title">Bounding Coordination Assessment</h3>
+                        <p class="category-description">Critical limitation requiring immediate intervention</p>
+                    </div>
+                    <div class="category-content">
+                        <!-- Critical Coordinative Limitation -->
+                        <div style="background: #fef2f2; border: 2px solid #dc2626; border-radius: 12px; padding: 25px; margin-bottom: 20px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                                <span style="width: 12px; height: 12px; background: #dc2626; border-radius: 50%; margin-right: 12px;"></span>
+                                <h5 style="color: #7f1d1d; margin: 0; font-size: 1.2rem; font-weight: 700;">⚠️ Critical Finding: Both Brothers Cannot Bound</h5>
+                            </div>
+                            <p style="color: #7f1d1d; line-height: 1.7; margin-bottom: 15px; font-size: 1rem;">
+                                <strong>Both Abbas and Mohammed lack the fundamental coordination to execute proper bounding mechanics.</strong> This is not a power limitation that can be trained through traditional plyometrics - it is a <strong>coordinative deficit</strong> that represents the primary bottleneck in their athletic development.
+                            </p>
+                            <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                                <h6 style="color: #991b1b; margin-bottom: 12px; font-size: 1.05rem;">Assessment Notes:</h6>
+                                <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                                    <li style="margin-bottom: 8px;">Unable to maintain consistent rhythm through 10 consecutive bounds</li>
+                                    <li style="margin-bottom: 8px;">Poor single-leg stability and balance during landing phase</li>
+                                    <li style="margin-bottom: 8px;">Excessive lateral movement and inability to maintain straight line</li>
+                                    <li style="margin-bottom: 8px;">Cannot coordinate alternating leg push-off patterns effectively</li>
+                                    <li>Distance metrics (18.6m-20.35m) are unreliable due to poor execution quality</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                                <h6 style="color: #991b1b; margin-bottom: 12px; font-size: 1.05rem;">Why This Is Critical:</h6>
+                                <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                                    <li style="margin-bottom: 8px;"><strong>Power Development Prerequisite:</strong> Cannot develop power through plyometrics without coordination to execute the movements properly</li>
+                                    <li style="margin-bottom: 8px;"><strong>Force Transfer Inefficiency:</strong> Inability to coordinate single-leg force production directly limits sprint performance</li>
+                                    <li style="margin-bottom: 8px;"><strong>Injury Risk Amplification:</strong> Attempting power work without foundational coordination = extremely high injury risk</li>
+                                    <li style="margin-bottom: 8px;"><strong>Sprint Mechanics Connection:</strong> Same coordination deficits limiting bounding are limiting sprint optimization</li>
+                                    <li><strong>Development Bottleneck:</strong> No amount of strength training will overcome this coordination barrier</li>
+                                </ul>
+                            </div>
+                            <div style="background: #fee2e2; border-left: 4px solid #dc2626; padding: 15px; border-radius: 4px;">
+                                <p style="color: #991b1b; margin: 0; font-weight: 600; font-size: 1rem;">
+                                    <strong>IMMEDIATE ACTION REQUIRED:</strong> Bounding coordination must be established BEFORE any power development program. This is non-negotiable Phase 0 work (4-8 weeks minimum). See development plan for specific progression criteria and drills.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- What Proper Bounding Should Look Like -->
+                        <div style="background: #f0f9ff; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin-bottom: 20px;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.1rem; text-align: center; font-weight: 600;">Elite Youth Bounding Standards</h5>
+                            <div style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
+                                <h6 style="color: #0c4a6e; margin-bottom: 12px;">Coordination Criteria (Must Master Before Distance):</h6>
+                                <ul style="color: #64748b; line-height: 1.7; margin-left: 20px; font-size: 0.95rem;">
+                                    <li style="margin-bottom: 6px;">Consistent rhythm maintained for 10+ consecutive bounds</li>
+                                    <li style="margin-bottom: 6px;">Single-leg landing stability with minimal wobble</li>
+                                    <li style="margin-bottom: 6px;">Straight-line tracking (less than 1m lateral deviation over 10 bounds)</li>
+                                    <li style="margin-bottom: 6px;">Smooth alternating leg transitions without pauses</li>
+                                    <li style="margin-bottom: 6px;">Controlled landing mechanics (no knee valgus, proper foot position)</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; border-radius: 8px; padding: 20px;">
+                                <h6 style="color: #0c4a6e; margin-bottom: 12px;">Distance Targets (After Coordination Established):</h6>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; text-align: center;">
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px;">Youth Baseline</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #f59e0b;">22-25m</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px;">Elite Youth (12-13yo)</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #3b82f6;">28-31m</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.85rem; color: #64748b; margin-bottom: 5px;">Elite Adult</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #059669;">35m+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="assessment-rating">
+                            <span class="rating-label">Coordination Status</span>
+                            <span class="rating-badge needs-improvement">Critical - Requires Immediate Intervention</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speed Summary -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; margin-top: 30px;">
+            <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Brothers Speed Performance Summary</h2>
+
+            <!-- Abbas Summary -->
+            <div style="background: #fef3c7; border: 2px solid #f59e0b; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                <h3 style="color: #92400e; text-align: center; margin-bottom: 20px; font-size: 1.3rem;">ABBAS</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #d97706; margin-bottom: 8px;">17.14 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">0-10m Average</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #d97706; margin-bottom: 8px;">21.69 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10-20m Split</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #d97706; margin-bottom: 8px;">21.95 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10m Fly (Peak)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mohammed Summary -->
+            <div style="background: #dcfce7; border: 2px solid #10b981; border-radius: 12px; padding: 25px; margin-bottom: 25px;">
+                <h3 style="color: #065f46; text-align: center; margin-bottom: 20px; font-size: 1.3rem;">MOHAMMED</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #10b981; margin-bottom: 8px;">17.80 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">0-10m Average</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #10b981; margin-bottom: 8px;">24.16 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10-20m Split</div>
+                    </div>
+                    <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.4rem; font-weight: 700; color: #10b981; margin-bottom: 8px;">25.35 km/h</div>
+                        <div style="font-size: 0.85rem; color: #64748b;">10m Fly (Peak)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Direct Comparison -->
+            <div style="background: white; border: 2px solid #0284c7; border-radius: 12px; padding: 25px;">
+                <h3 style="color: #0c4a6e; text-align: center; margin-bottom: 20px; font-size: 1.2rem;">Performance Advantages</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">+4%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Acceleration</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">0.08s faster</div>
+                    </div>
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">+11%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Breakaway</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">0.17s faster</div>
+                    </div>
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">+15%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Top Speed</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">0.22s faster</div>
+                    </div>
+                    <div style="background: #dcfce7; border: 1px solid #10b981; border-radius: 8px; padding: 15px; text-align: center;">
+                        <div style="font-size: 1.2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">-15%</div>
+                        <div style="font-size: 0.8rem; color: #64748b;">Ground Contact</div>
+                        <div style="font-size: 0.75rem; color: #10b981; margin-top: 5px;">20ms better</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 15px; font-size: 0.9rem; color: #0c4a6e;">
+                    <strong>Mohammed demonstrates superior performance across all metrics</strong>
+                </div>
+            </div>
+
+            <!-- Speed Endurance Section -->
+            <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 30px; margin-top: 20px;">
+                <h3 style="color: #2c3e50; text-align: center; margin-bottom: 25px; font-size: 1.4rem;">Flying 20m Assessment</h3>
+                <p style="text-align: center; color: #64748b; margin-bottom: 25px; font-size: 0.95rem;">Extended flying sprint measuring sustained maximum velocity</p>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 15px; max-width: 400px; margin: 0 auto;">
+                    <div style="background: #f8fafc; border: 2px solid #10b981; border-radius: 8px; padding: 20px; text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: #059669; margin-bottom: 5px;">3.252s</div>
+                        <div style="font-size: 1rem; color: #64748b; margin-bottom: 3px;">22.14 km/h average</div>
+                        <div style="font-size: 0.85rem; color: #10b981; font-weight: 600;">Flying 20m Time</div>
+                    </div>
+                </div>
+                <div style="background: #e0f2fe; border: 1px solid #0284c7; border-radius: 8px; padding: 15px; margin-top: 20px; text-align: center;">
+                    <div style="font-size: 0.95rem; color: #0c4a6e; font-weight: 600;">Speed Maintenance: 22.14 km/h over 20m vs 21.95 km/h over 10m</div>
+                    <div style="font-size: 0.85rem; color: #075985; margin-top: 5px;">Excellent speed endurance - minimal velocity decay over extended distance</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conclusion & Action Plan -->
+        <div style="background: #f8fafc; border-top: 3px solid #667eea; padding: 40px; margin-top: 30px;">
+            <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px; font-size: 1.8rem;">Brothers Conclusion & Development Pathways</h2>
+            <div style="max-width: 900px; margin: 0 auto; line-height: 1.7; color: #475569;">
+
+                <!-- Brothers vs Elite Comparison -->
+                <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 12px; padding: 25px; margin-bottom: 30px;">
+                    <h5 style="color: #0c4a6e; margin-bottom: 20px; font-size: 1.2rem; text-align: center; font-weight: 600;">Brothers vs NRL Youth & Elite Standards</h5>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div style="background: white; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 10px;">Peak Speed Comparison</div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="color: #f59e0b;">Abbas: 21.95 km/h</span>
+                                <span style="color: #94a3b8;">(-15-22%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="color: #10b981;">Mohammed: 25.35 km/h</span>
+                                <span style="color: #94a3b8;">(-2-9%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="color: #3b82f6;">Elite Youth: ~26-28 km/h</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                                <span style="color: #059669;">Brian To'o: ~35 km/h</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: #059669;">Hamiso T-F: ~36 km/h</span>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #64748b; margin-top: 5px; font-style: italic;">NRL elite standards</div>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 10px;">Acceleration (0-10m)</div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #f59e0b;">Abbas: 2.10s</span>
+                                <span style="color: #94a3b8;">(-14%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #10b981;">Mohammed: 2.02s</span>
+                                <span style="color: #94a3b8;">(-10%)</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span style="color: #3b82f6;">Elite Youth: ~1.84s</span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: #065f46; margin-top: 8px;">Mohammed closer to elite standard</div>
+                        </div>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px;">
+                            <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 10px;">Technical Efficiency</div>
+                            <div style="margin-bottom: 8px;">
+                                <span style="color: #f59e0b; font-weight: 600;">Abbas:</span>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">GCT: 130ms</div>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Stride: ~1.6m</div>
+                            </div>
+                            <div>
+                                <span style="color: #10b981; font-weight: 600;">Mohammed:</span>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">GCT: 110ms ⭐</div>
+                                <div style="font-size: 0.85rem; color: #64748b; margin-left: 10px;">Stride: 1.82m ⭐</div>
+                            </div>
+                            <div style="font-size: 0.75rem; color: #065f46; margin-top: 8px; font-style: italic;">Mohammed shows elite youth mechanics</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+                    <h4 style="color: #92400e; margin-bottom: 10px; font-size: 1.1rem;">Abbas's Profile</h4>
+                    <p style="margin-bottom: 0;">Peak velocity of 21.95 km/h (15-22% below elite youth NRL) with 130ms GCT and ~1.6m stride length. Flying 20m time of 3.252s demonstrates good speed endurance. Key areas for development: acceleration mechanics, ground contact time reduction, and stride efficiency. Has significant room for technical refinement and strength development.</p>
+                </div>
+
+                <div style="background: #dcfce7; border-left: 4px solid #10b981; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+                    <h4 style="color: #065f46; margin-bottom: 10px; font-size: 1.1rem;">Mohammed's Profile</h4>
+                    <p style="margin-bottom: 0;">Peak velocity of 25.35 km/h (only 2-9% below elite youth NRL) with outstanding 110ms GCT and 1.82m stride length. Superior reactive strength and biomechanical efficiency across all metrics. Demonstrates elite youth potential with technical foundations that position him for continued high-level development.</p>
+                </div>
+
+                <p style="margin-bottom: 20px;"><strong>Brothers Analysis:</strong> Despite being the same age, Mohammed shows 4-15% better performance across all speed metrics. The key differences lie in Mohammed's superior ground contact time (110ms vs 130ms), longer stride length (1.82m vs 1.6m), and higher stride frequency (4.18 Hz vs 3.84 Hz). These technical advantages compound to produce significantly faster times across all distance splits.</p>
+                
+                <div style="background: rgba(102, 126, 234, 0.1); border-radius: 12px; border-left: 4px solid #667eea; padding: 30px; margin-top: 20px;">
+                    <h3 style="color: #2c3e50; margin-bottom: 25px; font-size: 1.4rem; text-align: center;">Priority Actions for Brothers' Athletic Development</h3>
+
+                    <!-- Summary of Key Issues -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 25px; border: 2px solid #0284c7;">
+                        <h4 style="color: #0c4a6e; margin-bottom: 15px; font-size: 1.1rem;">Key Findings Summary</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div>
+                                <h5 style="color: #f59e0b; margin-bottom: 10px;">Abbas (Developing)</h5>
+                                <ul style="color: #64748b; font-size: 0.9rem; line-height: 1.6; margin-left: 20px;">
+                                    <li>210ms GCT acceleration → 130ms top speed</li>
+                                    <li>First step delay (210ms), heel striking</li>
+                                    <li>Foot landing in front of CoM (braking forces)</li>
+                                    <li>Knee breaking from quad weakness</li>
+                                    <li>Excessive vertical rise, elevated chin</li>
+                                    <li>14-22% below elite youth NRL standards</li>
+                                    <li><strong>Bounding coordination deficit</strong></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 style="color: #10b981; margin-bottom: 10px;">Mohammed (Advanced)</h5>
+                                <ul style="color: #64748b; font-size: 0.9rem; line-height: 1.6; margin-left: 20px;">
+                                    <li>100-120ms GCT acceleration → 110ms top speed ⭐</li>
+                                    <li>Superior upper body rotation & torque ⭐</li>
+                                    <li>Better foot placement, more power</li>
+                                    <li>Heel striking, side-to-side movement</li>
+                                    <li>Quad weakness, hip internal rotation</li>
+                                    <li>Only 2-10% below elite youth NRL</li>
+                                    <li><strong>Bounding coordination deficit</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p style="color: #0c4a6e; margin-top: 15px; font-weight: 600; font-size: 0.95rem; text-align: center;">
+                            Shared Critical Issue: Both brothers struggle with bounding coordination - this is the primary bottleneck limiting power development
+                        </p>
+                    </div>
+
+                    <p style="margin-bottom: 25px; font-size: 1.05rem; font-weight: 600; color: #2c3e50;">Youth-appropriate development plan addressing bounding coordination deficit, sprint mechanics flaws, and power limitations through systematic phased approach:</p>
+
+                    <!-- Phase 0: IMMEDIATE PRIORITY -->
+                    <div style="background: #fef2f2; border-radius: 10px; padding: 20px; margin-bottom: 20px; border: 3px solid #dc2626;">
+                        <h4 style="color: #dc2626; margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: center;">
+                            <span style="background: #dc2626; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">⚠️</span>
+                            IMMEDIATE PRIORITY: Bounding Coordination Foundation (4-8 weeks)
+                        </h4>
+                        <p style="color: #7f1d1d; margin-bottom: 15px; line-height: 1.6; font-weight: 600;"><strong>Critical:</strong> Both brothers must establish basic bounding coordination before progressing to power development. This is not optional - it's the prerequisite for all subsequent phases.</p>
+
+                        <div style="background: white; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+                            <h5 style="color: #991b1b; margin-bottom: 10px;">Why This Phase Cannot Be Skipped:</h5>
+                            <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                                <li style="margin-bottom: 6px;">Bounding struggles reveal inability to coordinate single-leg force production</li>
+                                <li style="margin-bottom: 6px;">Cannot develop power through plyometrics without coordination to execute the movements</li>
+                                <li style="margin-bottom: 6px;">Attempting advanced plyometrics with poor bounding = high injury risk + zero adaptation</li>
+                                <li>Same coordination deficits limit sprint mechanics optimization</li>
+                            </ul>
+                        </div>
+
+                        <h5 style="color: #dc2626; margin-bottom: 10px; margin-top: 15px;">Phase 0 Training Focus:</h5>
+                        <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Basic bounding patterns:</strong> Short 3-5 bound sequences focusing on rhythm and timing (not distance)</li>
+                            <li style="margin-bottom: 8px;"><strong>Single-leg stance work:</strong> Static holds → controlled descent → single-leg mini-hops</li>
+                            <li style="margin-bottom: 8px;"><strong>Ankle preparation:</strong> Pogo progression (bilateral pogos → split stance → single-leg pogos)</li>
+                            <li style="margin-bottom: 8px;"><strong>Hip/knee stabilization:</strong> Single-leg balance with perturbations, controlled landing drills</li>
+                            <li style="margin-bottom: 8px;"><strong>Coordination emphasis:</strong> Slow alternating bounds with 3-second stance phase between bounds</li>
+                            <li style="margin-bottom: 8px;"><strong>Video feedback:</strong> Every session - show them what proper vs improper looks like</li>
+                            <li><strong>Success criteria:</strong> Consistent 8-10 bounds maintaining rhythm and balance before progressing</li>
+                        </ul>
+
+                        <div style="background: #fee2e2; border-left: 4px solid #dc2626; padding: 12px; margin-top: 15px; border-radius: 4px;">
+                            <p style="color: #991b1b; margin: 0; font-size: 0.95rem;"><strong>Progress Check:</strong> Only advance to Phase 1 when both can execute 10 consecutive bounds with consistent rhythm, stable landings, and minimal side-to-side deviation. Do not rush this phase.</p>
+                        </div>
+                    </div>
+
+                    <!-- Phase 1 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #3498db;">
+                        <h4 style="color: #3498db; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #3498db; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">1</span>
+                            Sprint Mechanics Correction & Movement Patterns (8-12 weeks)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Fix heel striking, landing position, and establish proper foot contact patterns</p>
+
+                        <div style="background: #f8fafc; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #64748b; margin: 0; font-size: 0.9rem;"><strong>Abbas Priority:</strong> First step mechanics, reduce 210ms delay, heel-to-forefoot transition | <strong>Mohammed Priority:</strong> Reduce side-to-side movement, improve alignment, maintain power advantage</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Heel-to-forefoot transition drills:</strong> Wall drills, partner marching, slow-motion sprint cycles (Abbas: 210ms → 180ms GCT target)</li>
+                            <li style="margin-bottom: 8px;"><strong>Landing position correction:</strong> Foot placement under center of mass drills, high knee walks with dorsiflexion, wicket runs</li>
+                            <li style="margin-bottom: 8px;"><strong>Alignment work:</strong> Hip/toe pointing straight drills, line running, mirror feedback (Mohammed: reduce rotation issues)</li>
+                            <li style="margin-bottom: 8px;"><strong>Posture correction:</strong> Chin tuck drills, forward lean progressions, core bracing during acceleration</li>
+                            <li style="margin-bottom: 8px;"><strong>First step mechanics:</strong> Front leg drive emphasis, reactive starts from various positions (Abbas critical)</li>
+                            <li style="margin-bottom: 8px;"><strong>Acceleration pattern work:</strong> 10-15 acceleration reps per session (10-20m), emphasizing horizontal drive and forefoot contact</li>
+                            <li style="margin-bottom: 8px;"><strong>Continued bounding:</strong> Maintain 2x/week bounding work, now focusing on increasing distance (target: 22-25m)</li>
+                            <li><strong>Video analysis:</strong> Weekly sessions comparing their mechanics to targets, immediate feedback loops</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #2ecc71;">
+                        <h4 style="color: #2ecc71; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #2ecc71; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">2</span>
+                            Reactive Strength & Ground Contact Optimization (8-12 weeks)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Reduce GCT and increase reactive strength through coordinated plyometric progressions</p>
+
+                        <div style="background: #f0fdf4; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #064e3b; margin: 0; font-size: 0.9rem;"><strong>Abbas Target:</strong> 130ms → 110-115ms top speed GCT | <strong>Mohammed Target:</strong> 110ms → 95-100ms top speed GCT (approaching elite youth)</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Ankle stiffness progression:</strong> Pogo jumps (bilateral → single-leg), quick ground contacts, repeated hops on force plate</li>
+                            <li style="margin-bottom: 8px;"><strong>Fast ground contact drills:</strong> Rapid-fire mini hurdles, quick feet ladders, speed bounce variations</li>
+                            <li style="margin-bottom: 8px;"><strong>Bounding for distance:</strong> Now targeting performance - Abbas 25m+, Mohammed 28m+ (elite youth: 31m)</li>
+                            <li style="margin-bottom: 8px;"><strong>Sprint-specific coordination:</strong> Wicket drills at varying spacings, resisted/assisted sprints, overspeed work</li>
+                            <li style="margin-bottom: 8px;"><strong>Stride optimization:</strong> Target 1.7-1.85m stride length consistency, frequency drills to increase Hz</li>
+                            <li style="margin-bottom: 8px;"><strong>Top speed mechanics:</strong> Flying 10m/20m sprints with timing gates, maximum velocity holds</li>
+                            <li><strong>CNS development:</strong> High-quality, low-volume explosive work (never fatigued reps)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 3 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #f39c12;">
+                        <h4 style="color: #f39c12; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #f39c12; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">3</span>
+                            Progressive Power Development (Ongoing - 12+ weeks)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Build explosive power through progressive plyometric program (only after bounding coordination established)</p>
+
+                        <div style="background: #fef3c7; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #78350f; margin: 0; font-size: 0.9rem;"><strong>Prerequisite:</strong> Cannot enter this phase without demonstrating competent bounding mechanics and GCT improvements from Phase 1-2</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Bound variations:</strong> Single-leg bounds, alternate leg bounds, continuous bounds, uphill bounds</li>
+                            <li style="margin-bottom: 8px;"><strong>Sport-specific power:</strong> Lateral bounds (rugby directional changes), rotational medicine ball work</li>
+                            <li style="margin-bottom: 8px;"><strong>Landing mechanics emphasis:</strong> Every rep - proper foot position, no knee valgus, quick transitions</li>
+                            <li style="margin-bottom: 8px;"><strong>Volume management:</strong> Youth-appropriate contacts per session (40-60 for beginners, 80-100 advanced)</li>
+                            <li><strong>Integration:</strong> Power work + sprint work same session (power first when fresh)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 4 -->
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; border-left: 5px solid #9b59b6;">
+                        <h4 style="color: #9b59b6; margin-bottom: 15px; font-size: 1.2rem; display: flex; align-items: center;">
+                            <span style="background: #9b59b6; color: white; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: 700;">4</span>
+                            Strength Development (Parallel with all phases - ongoing)
+                        </h4>
+                        <p style="color: #475569; margin-bottom: 12px; line-height: 1.6;"><strong>Focus:</strong> Quad strengthening, knee stability, hip/core control - runs concurrent with all phases at appropriate intensity</p>
+
+                        <div style="background: #faf5ff; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                            <p style="color: #581c87; margin: 0; font-size: 0.9rem;"><strong>Both Brothers:</strong> Quad weakness (knee breaking) is primary strength limitation. Core/hip work secondary. Youth-appropriate loads only.</p>
+                        </div>
+
+                        <ul style="color: #64748b; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Quad dominant work:</strong> Goblet squats, split squats, step-ups, knee extension variations (address knee breaking)</li>
+                            <li style="margin-bottom: 8px;"><strong>Single-leg strength:</strong> Bulgarian split squats, single-leg RDLs, pistol progressions (correct rotation patterns)</li>
+                            <li style="margin-bottom: 8px;"><strong>Posterior chain:</strong> Hip thrusts, Nordic curls (progression), glute bridges, deadlift variations</li>
+                            <li style="margin-bottom: 8px;"><strong>Core complex:</strong> Anti-rotation work, lower ab emphasis, posterior pelvic tilt training</li>
+                            <li style="margin-bottom: 8px;"><strong>Ankle/calf strengthening:</strong> Calf raises (multiple positions), ankle dorsiflexion work, tibialis raises</li>
+                            <li style="margin-bottom: 8px;"><strong>Isometric holds:</strong> Wall sits, single-leg holds, joint angle-specific positions for stability</li>
+                            <li style="margin-bottom: 8px;"><strong>Rate of force development:</strong> Trap bar jumps, medicine ball throws (when technical foundation solid)</li>
+                            <li><strong>Progression model:</strong> Bodyweight mastery → External load → Explosive variations (12-18 month timeline)</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fee2e2; border: 2px solid #dc2626; border-radius: 8px; padding: 20px; margin-top: 20px;">
+                        <p style="color: #7f1d1d; font-weight: 600; margin-bottom: 12px; font-size: 1.05rem;">⚠️ Critical Youth Development Principles:</p>
+                        <ul style="color: #7f1d1d; line-height: 1.7; margin-left: 20px;">
+                            <li style="margin-bottom: 8px;"><strong>Bounding coordination is non-negotiable:</strong> Do not skip Phase 0. Both brothers must establish this foundation.</li>
+                            <li style="margin-bottom: 8px;"><strong>Different progression rates:</strong> Mohammed is more advanced - may progress through phases faster, but still must complete each phase</li>
+                            <li style="margin-bottom: 8px;"><strong>Injury risk factors:</strong> Heel striking + hamstring loading + quad weakness = high hamstring/knee injury risk. Address immediately.</li>
+                            <li style="margin-bottom: 8px;"><strong>Technique before intensity:</strong> Perfect movement quality at 70% effort before progressing to 100%</li>
+                            <li style="margin-bottom: 8px;"><strong>Youth-appropriate volume:</strong> 12-year-olds need more recovery, less volume than adults. Quality over quantity.</li>
+                            <li style="margin-bottom: 8px;"><strong>Concurrent development:</strong> Strength work (Phase 4) runs parallel to all other phases at appropriate intensity</li>
+                            <li><strong>Timeline expectation:</strong> 6-12 months to see significant improvements. This is long-term athletic development, not a quick fix.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer with Logo and Contact Info -->
+        <div style="background: #2c3e50; color: white; padding: 50px 40px; text-align: center;">
+            <!-- Logo -->
+            <div style="position: relative; width: 100%; max-width: 150px; margin: 0 auto 30px auto;">
+                <iframe loading="lazy" style="width: 100%; height: 120px; border: none; padding: 0; margin: 0; background: transparent;" src="https://www.canva.com/design/DAG2a_N00HI/MCb1a3SkyjhfsUZZtpdwhw/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div style="margin-bottom: 15px;">
+                    <a href="https://www.ambitionsportsperformance.com" target="_blank" style="color: white; font-size: 1.2rem; font-weight: 700; text-decoration: none; border-bottom: 2px solid #3498db; padding-bottom: 2px;">www.ambitionsportsperformance.com</a>
+                </div>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; margin-top: 20px;">
+                    <a href="https://www.instagram.com/ambitionsportsperformance" target="_blank" style="color: white; text-decoration: none; font-size: 1rem; font-weight: 700; transition: color 0.3s;">
+                        Instagram: @ambitionsportsperformance
+                    </a>
+                    
+                    <a href="https://youtube.com/@ambitionfootball?si=0UXG4OsP51yW2SaC" target="_blank" style="color: white; text-decoration: none; font-size: 1rem; font-weight: 700; transition: color 0.3s;">
+                        YouTube: Ambition Football
+                    </a>
+                    
+                    <a href="https://subscribepage.io/YF641F" target="_blank" style="color: white; text-decoration: none; font-size: 1rem; font-weight: 700; transition: color 0.3s;">
+                        Success Stories: subscribepage.io/YF641F
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
